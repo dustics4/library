@@ -9,12 +9,6 @@ showButton.addEventListener("click", () =>{
     bookDialog.showModal();
 });
 
-buttonSubmit.addEventListener("click", (event) => {
-    event.preventDefault(); // We don't want to submit this fake form
-    bookDialog.close(console.log("sent")); // Have to send the select box value here.
-});
-
-
 buttonClose.addEventListener("click", () => {
     bookDialog.close();
 })
@@ -39,9 +33,18 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary() {
   // do stuff here
+//user form query selector to take input
+// create variables to put it into here
+// e.g let title = $titleINput.value;
+// When you get to read, create a function getReadValue()
+  const newBook = new Book(title,author,pages,read);
+
 }
 
-function takeInput() {
-    //take users input and store it in myLibrary
-    const book = new Book(title,author,pages,read);
-}
+
+//Create a function to show the input on the page
+// When clicking the submit button, it needs to run all the functions
+buttonSubmit.addEventListener("click", (event) => {
+    event.preventDefault(); // We don't want to submit this fake form
+    bookDialog.close(console.log("sent")); // Have to send the select box value here.
+});
