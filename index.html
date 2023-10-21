@@ -10,25 +10,23 @@
 
     <dialog id="bookDialog">
         <form method="dialog">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" required>
-            <label for="author">Author</label>
-            <input type="text" name="author" id="author" required>
-            <label for="pages">Pages</label>
-            <input type="number" name="pages" id="pages" required>
-
-            <button id="buttonSubmit" value="default">Submit</button>
+            <h1>New Book</h1>
+            <input type="text" name="title" id="title" required placeholder="Title">
+            <input type="text" name="author" id="author" required placeholder="Author">
+            <input type="number" name="pages" id="pages" required placeholder="Pages">
+            <div id="two-buttons">
+                <button id="buttonSubmit" value="default">Submit</button>
+                <button id="buttonClose" formmethod="dialog">Close</button>
+            </div>
                 
         </form>
-        <div>
-            <button id="buttonClose" formmethod="dialog">Close</button>
-            
-        </div>
     </dialog>
 
     <button id="createBook">New Book</button>
 
-    <output></output>
+    <main class="main">
+        
+    </main>
 
     <script src="code.js"></script>
 </body>
