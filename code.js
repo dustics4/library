@@ -42,21 +42,22 @@ function Book(title, author, pages) {
 
 
 function addBookToLibrary() {
+    //taking the input and storing it into the constructor as a value
     let newBook = new Book();
     newBook.title = title.value;
     newBook.author = author.value;
     newBook.pages = pages.value;
 
-    console.log(newBook);
+    // We output the input to see if it is getting the correct information
+    //console.log(newBook);
+    // Once that is done, we push the input into an array to store its value
     myLibrary.push(newBook);
 
+    // we loop through each of the values in the array , to get what we would like which is the input
     myLibrary.forEach((myLibrary) => {
         myLibrary.title = newBook.title;
         console.log(myLibrary.title);
     })
-  // create array to loop through each array
-    //user form query selector to take input
-    // create variables to put it into here
     // When you get to read, create a function getReadValue().checked
 }
 
