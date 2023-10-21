@@ -6,9 +6,9 @@ const buttonClose = document.getElementById("buttonClose")
 const bookSection = document.querySelector(".main")
 
 //TAKE INPUT
-    const title = document.querySelector("#title").value;
-    const author = document.querySelector("#author").value;
-    const pages = document.querySelector("#pages").value;
+    const title = document.querySelector("#title");
+    const author = document.querySelector("#author");
+    const pages = document.querySelector("#pages");
 
 showButton.addEventListener("click", () =>{
     bookDialog.showModal(); 
@@ -40,15 +40,21 @@ function Book(title, author, pages) {
 
 }
 
+
 function addBookToLibrary() {
-    let newBook = new Book(title,author,pages);
+    let newBook = new Book();
+    newBook.title = title.value;
+    newBook.author = author.value;
+    newBook.pages = pages.value;
+
+    console.log(newBook);
     myLibrary.push(newBook);
 
     myLibrary.forEach((myLibrary) => {
-        let title = myLibrary.title;
-        console.log(title);
+        myLibrary.title = newBook.title;
+        console.log(myLibrary.title);
     })
-  // do stuff here
+  // create array to loop through each array
     //user form query selector to take input
     // create variables to put it into here
     // When you get to read, create a function getReadValue().checked
@@ -80,9 +86,7 @@ function getReadValue() {
 // When clicking the submit button, it needs to run all the functions
 buttonSubmit.addEventListener("click" , (e) => {
     e.preventDefault();
-    
     addBookToLibrary();
-    
     bookDialog.close();
 
 })
