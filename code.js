@@ -83,6 +83,7 @@ function createBook(book){
 
     //needs fixing, check how you can display the inut in a DOM
     //Create the isread check box
+    
     title.textContent = '"${book.title}"'
     author.textContent = book.author
     pages.textContent = '${book.pages}  pages'
