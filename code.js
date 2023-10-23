@@ -48,21 +48,22 @@ function addBookToLibrary() {
     newBook.author = author.value;
     newBook.pages = pages.value;
 
-    // We output the input to see if it is getting the correct information
+    // We show the input to see if it is getting the correct information
     //console.log(newBook);
     // Once that is done, we push the input into an array to store its value
     myLibrary.push(newBook);
 
     // we loop through each of the values in the array , to get what we would like which is the input
-    myLibrary.forEach((myLibrary) => {
-        myLibrary.title = newBook.title;
-        console.log(myLibrary.title);
-    })
+    //myLibrary.forEach((myLibrary) => {
+    //    myLibrary.title = newBook.title;
+   //     console.log(myLibrary.title);
+   // })
     // When you get to read, create a function getReadValue().checked
 }
 
 function printBook(){
-
+ //need to loop through array 
+ // run through createbook
 }
 
 function clearInput(){
@@ -71,7 +72,27 @@ function clearInput(){
     pages.value = '';
 }
 
-function createBook(){
+function createBook(book){
+    const bookCard = document.createElement('div');
+    const title = document.createElement('p');
+    const author = document.createElement('p');
+    const pages = document.createElement('p');
+
+
+    bookCard.classList.add('book-card');
+
+    //needs fixing, check how you can display the inut in a DOM
+    //Create the isread check box
+    title.textContent = '"${book.title}"'
+    author.textContent = book.author
+    pages.textContent = '${book.pages}  pages'
+
+    bookCard.appendChild(title);
+    bookCard.appendChild(author);
+    bookCard.appendChild(pages);
+    bookSection.appendChild(bookCard);
+
+
     //from the users input 
     //create function for DOM elements
     //create the view here
@@ -82,12 +103,22 @@ function getReadValue() {
 
 }
 
+function validateSubmit() {
+    if(title.value == "" && author.value == "" && pages.value == ""){
+        alert("Must be filled out");
+    }else{
+        bookDialog.close();
+        return false;
+
+    }
+}
+
 //Create a function to show the input on the page
 
 // When clicking the submit button, it needs to run all the functions
 buttonSubmit.addEventListener("click" , (e) => {
     e.preventDefault();
+    validateSubmit();
     addBookToLibrary();
-    bookDialog.close();
-
+    createBook();
 })
