@@ -1,3 +1,8 @@
+// notes for next update:
+//create a remove button on each display
+//add button on each book to change it's read status
+
+
 //SHOW THE DIALOG BOX
 const showButton = document.getElementById("createBook")
 const bookDialog = document.getElementById("bookDialog")
@@ -10,10 +15,12 @@ const bookSection = document.querySelector(".main")
     const author = document.querySelector("#author");
     const pages = document.querySelector("#pages");
 
+// Show the dialog box to input details
 showButton.addEventListener("click", () =>{
     bookDialog.showModal(); 
 });
 
+//Closes the dialog box
 buttonClose.addEventListener("click", (e) => {
     e.preventDefault();
     bookDialog.close();
@@ -28,9 +35,9 @@ const myLibrary = [
     }
 ];
 
+//constructor for the Books
 function Book(title, author, pages) {
   // the constructor...
-  // create the constructor
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -69,8 +76,9 @@ function clearInput(){
 }
 
 createBook = () => {
-    
+    resetBook();
     myLibrary.forEach(Book => {
+        
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-card');
         bookSection.appendChild(bookCard);
@@ -89,19 +97,13 @@ createBook = () => {
         pagesInfo.textContent = Book.pages ;
         pagesInfo.classList.add('pages-info');
         bookCard.appendChild(pagesInfo);
+
+        
     })
+}
 
-    //needs fixing, check how you can display the inut in a DOM
-    //Create the isread check box
-
-    
-
-
-
-    //from the users input 
-    //create function for DOM elements
-    //create the view here
-    //title.text content = this.title
+const resetBook = () => {
+    bookSection.innerHTML = '';
 }
 
 function getReadValue() {
@@ -124,4 +126,5 @@ buttonSubmit.addEventListener("click" , (e) => {
     validateSubmit();
     addBookToLibrary();
     createBook();
+    
 })
