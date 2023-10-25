@@ -22,12 +22,9 @@ buttonClose.addEventListener("click", (e) => {
 
 
 //Array to hold the content of the book
-//how to use push in array
 const myLibrary = [
     {
-        title: "The Hobit by J.R.R",
-        author: "Tolkien",
-        pages: "295 pages",
+        
     }
 ];
 
@@ -47,7 +44,6 @@ function addBookToLibrary() {
     newBook.title = title.value;
     newBook.author = author.value;
     newBook.pages = pages.value;
-
     // We show the input to see if it is getting the correct information
     //console.log(newBook);
     // Once that is done, we push the input into an array to store its value
@@ -72,26 +68,34 @@ function clearInput(){
     pages.value = '';
 }
 
-function createBook(book){
-    const bookCard = document.createElement('div');
-    const title = document.createElement('p');
-    const author = document.createElement('p');
-    const pages = document.createElement('p');
+createBook = () => {
+    
+    myLibrary.forEach(Book => {
+        const bookCard = document.createElement('div');
+        bookCard.classList.add('book-card');
+        bookSection.appendChild(bookCard);
 
+        const titleInfo = document.createElement('h1');
+        titleInfo.classList.add('title-info');
+        titleInfo.textContent = Book.title;
+        bookCard.appendChild(titleInfo);
 
-    bookCard.classList.add('book-card');
+        const authorInfo = document.createElement('h1');
+        authorInfo.classList.add('title-info');
+        authorInfo.textContent = Book.author;
+        bookCard.appendChild(authorInfo);
+
+        const pagesInfo = document.createElement('h1');
+        pagesInfo.textContent = Book.pages ;
+        pagesInfo.classList.add('pages-info');
+        bookCard.appendChild(pagesInfo);
+    })
 
     //needs fixing, check how you can display the inut in a DOM
     //Create the isread check box
-    
-    title.textContent = '"${book.title}"'
-    author.textContent = book.author
-    pages.textContent = '${book.pages}  pages'
 
-    bookCard.appendChild(title);
-    bookCard.appendChild(author);
-    bookCard.appendChild(pages);
-    bookSection.appendChild(bookCard);
+    
+
 
 
     //from the users input 
@@ -113,8 +117,6 @@ function validateSubmit() {
 
     }
 }
-
-//Create a function to show the input on the page
 
 // When clicking the submit button, it needs to run all the functions
 buttonSubmit.addEventListener("click" , (e) => {
