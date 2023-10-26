@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    height: 100vh;
+}
+
 #bookDialog {
     height : 350px;
     width: 400px;
@@ -17,5 +22,43 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+header {
+    background-color: #475569;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0px;
+}
+
+#createBook {
+    padding: 25px 35px;
+    border-radius: 8px;
+    font-size: 32px;
+    border-style: none;
+}
+
+#createBook:hover {
+    background-color: #8f97a2;
+    color: white;
+}
+
+.book-card {
+    background-color: #9e4b0f;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    color: white;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
