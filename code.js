@@ -89,7 +89,7 @@ createBook = () => {
         bookCard.appendChild(titleInfo);
 
         const authorInfo = document.createElement('h1');
-        authorInfo.classList.add('title-info');
+        authorInfo.classList.add('author-info');
         authorInfo.textContent = Book.author;
         bookCard.appendChild(authorInfo);
 
@@ -126,5 +126,5 @@ buttonSubmit.addEventListener("click" , (e) => {
     validateSubmit();
     addBookToLibrary();
     createBook();
-    
+    clearInput();
 })
