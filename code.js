@@ -1,6 +1,12 @@
 // notes for next update:
-//create a remove button on each display
+//create a remove button on each display :
+// Create a DOM button element
+// then create a eventlistener - what the button does.
+// how to remove DOM elements
+
 //add button on each book to change it's read status
+//Create an edit button for the content to update pages
+
 
 
 //SHOW THE DIALOG BOX
@@ -9,6 +15,7 @@ const bookDialog = document.getElementById("bookDialog")
 const buttonSubmit = document.getElementById("buttonSubmit")
 const buttonClose = document.getElementById("buttonClose")
 const bookSection = document.querySelector(".main")
+const buttonRemove = document.getElementsByClassName("rmv-button");
 
 //TAKE INPUT
     const title = document.querySelector("#title");
@@ -31,7 +38,9 @@ buttonClose.addEventListener("click", (e) => {
 //Array to hold the content of the book
 const myLibrary = [
     {
-        
+        title: "Harry Potter",
+        author: "J.K Rowling",
+        pages: "none"
     }
 ];
 
@@ -62,11 +71,13 @@ function addBookToLibrary() {
    //     console.log(myLibrary.title);
    // })
     // When you get to read, create a function getReadValue().checked
-}
+} 
+  
 
-function printBook(){
- //need to loop through array 
- // run through createbook
+function removeBook(){
+    //how to remove book from display
+    const element = document.getElementById("book-card");
+    element.classList.remove("book-card1");
 }
 
 function clearInput(){
@@ -80,7 +91,8 @@ createBook = () => {
     myLibrary.forEach(Book => {
         
         const bookCard = document.createElement('div');
-        bookCard.classList.add('book-card');
+        bookCard.classList.add('book-card1');
+        bookCard.setAttribute("id", "book-card")
         bookSection.appendChild(bookCard);
 
         const titleInfo = document.createElement('h1');
@@ -98,9 +110,16 @@ createBook = () => {
         pagesInfo.classList.add('pages-info');
         bookCard.appendChild(pagesInfo);
 
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.classList.add('rmv-button');
+        bookCard.appendChild(removeButton);
+
         
     })
+    
 }
+
 
 const resetBook = () => {
     bookSection.innerHTML = '';
@@ -128,3 +147,5 @@ buttonSubmit.addEventListener("click" , (e) => {
     createBook();
     clearInput();
 })
+
+buttonRemove.addEventListener("click", removeBook());

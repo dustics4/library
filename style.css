@@ -47,7 +47,7 @@ header {
 }
 
 .book-card {
-    background-color: #9e4b0f;
+    background-color: #475569;
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -55,6 +55,7 @@ header {
     justify-content: center;
     margin: 15px;
     color: white;
+    border-radius: 8px;
 }
 
 main {
