@@ -1,9 +1,3 @@
-// notes for next update:
-//create a remove button on each display :
-// Create a DOM button element
-// then create a eventlistener - what the button does.
-// how to remove DOM elements
-
 //add button on each book to change it's read status
 //Create an edit button for the content to update pages
 
@@ -16,6 +10,7 @@ const buttonSubmit = document.getElementById("buttonSubmit")
 const buttonClose = document.getElementById("buttonClose")
 const bookSection = document.querySelector(".main")
 const removeButton = document.getElementById("remove-button");
+const isRead = document.getElementById("isRead");
 
 //TAKE INPUT
     const title = document.querySelector("#title");
@@ -40,17 +35,18 @@ const myLibrary = [
     {
         title: "Harry Potter",
         author: "J.K Rowling",
-        pages: "none"
+        pages: "none",
+        isRead: false,
     }
 ];
 
 //constructor for the Books
-function Book(title, author, pages) {
+function Book(title, author, pages, isRead) {
   // the constructor...
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = true;
+    this.isRead = isRead;
 }
 
 
@@ -64,7 +60,6 @@ function addBookToLibrary() {
     //console.log(newBook);
     // Once that is done, we push the input into an array to store its value
     myLibrary.push(newBook);
-
     // we loop through each of the values in the array , to get what we would like which is the input
     //myLibrary.forEach((myLibrary) => {
     //    myLibrary.title = newBook.title;
@@ -73,13 +68,6 @@ function addBookToLibrary() {
     // When you get to read, create a function getReadValue().checked
 } 
   
-
-
-
-function removeBook(){
-    const element = document.getElementById("book-card");
-    element.classList.remove("book-card1");
-}
 
 function clearInput(){
     title.value = '';
@@ -111,15 +99,16 @@ createBook = () => {
         pagesInfo.classList.add('pages-info');
         bookCard.appendChild(pagesInfo);
 
-        //for some reason the book is only removed after clicking the remove button, then subitting a new book
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
         removeButton.setAttribute("id", "remove-button");
         removeButton.classList.add('rmv-button');
         bookCard.appendChild(removeButton);
 
+        //remove button , using 
         removeButton.addEventListener('click', () => {
-            myLibrary.splice(myLibrary.indexOf(Book),1);
+            myLibrary.splice(myLibrary.indexOf(Book),bookCard.id);
+            bookCard.remove();  
         });
 
         //the read button doesn't change colour at all
@@ -127,16 +116,18 @@ createBook = () => {
         readButton.classList.add('read-button');
         bookCard.appendChild(readButton);   
 
-        if(Book.read === "true"){
-            readButton.textContent = 'Not Read';
-            readButton.style.backgroundColor = '#e04f63';
-        }else {
-            readButton.textContent === 'Read';
-            readButton.style.backgroundColor = '#63da63'
-        }
+        
 
         readButton.addEventListener('click', () => { 
-            Book.read = !Book.read;
+            Book.isRead = !Book.isRead;
+
+            if(Book.isRead === "false"){
+                readButton.textContent = 'Not Read';
+                readButton.style.backgroundColor = '#e04f63';
+            }else {
+                readButton.textContent === 'Read';
+                readButton.style.backgroundColor = '#63da63'
+            }
         });
 
     })
@@ -152,13 +143,14 @@ function getReadValue() {
 
 }
 
-function validateSubmit() {
+function validateSubmit(e) {
     if(title.value == "" && author.value == "" && pages.value == ""){
         alert("Must be filled out");
+        e.preventDefault();
+        bookDialog.close();
     }else{
         bookDialog.close();
         return false;
-
     }
 }
 
@@ -169,8 +161,4 @@ buttonSubmit.addEventListener("click" , (e) => {
     addBookToLibrary();
     createBook();
     clearInput();
-})
-
-//buttonRemove.addEventListener("click", () =>{
- //   removeBook();
-//});
+});
