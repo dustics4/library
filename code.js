@@ -50,7 +50,7 @@ function Book(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-
+    this.read = true;
 }
 
 
@@ -120,6 +120,23 @@ createBook = () => {
         removeButton.addEventListener('click', () => {
             myLibrary.splice(myLibrary.indexOf(Book),1);
         });
+
+        const readButton = document.createElement('button');
+        readButton.classList.add('read-button');
+        bookCard.appendChild(readButton);   
+
+        if(Book.read === "true"){
+            readButton.textContent = 'Not Read';
+            readButton.style.backgroundColor = '#e04f63';
+        }else {
+            readButton.textContent === 'Read';
+            readButton.style.backgroundColor = '#63da63'
+        }
+
+        readButton.addEventListener('click', () => { 
+            Book.read = !Book.read;
+        });
+
     })
     
 }

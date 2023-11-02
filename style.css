@@ -63,3 +63,7 @@ main {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
+.read-button {
+    padding : 10px 10px;
+}
+
