@@ -153,6 +153,8 @@ function validateSubmit(e) {
         return false;
     }
 }
+createBook();
+
 
 // When clicking the submit button, it needs to run all the functions
 buttonSubmit.addEventListener("click" , (e) => {
