@@ -32,12 +32,6 @@ buttonClose.addEventListener("click", (e) => {
 
 //Array to hold the content of the book
 const myLibrary = [
-    {
-        title: "Harry Potter",
-        author: "J.K Rowling",
-        pages: "none",
-        isRead: false,
-    }
 ];
 
 //constructor for the Books
@@ -49,6 +43,15 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
+Book.prototype.toggleRead = function() {
+    this.read = !this.read;
+}
+
+function toggleRead(index) {
+    myLibrary[index].toggleRead();
+    createBook();
+}
+
 
 function addBookToLibrary() {
     //taking the input and storing it into the constructor as a value
@@ -56,6 +59,7 @@ function addBookToLibrary() {
     newBook.title = title.value;
     newBook.author = author.value;
     newBook.pages = pages.value;
+    newBook.isRead = isRead.value;
     // We show the input to see if it is getting the correct information
     //console.log(newBook);
     // Once that is done, we push the input into an array to store its value
@@ -112,23 +116,27 @@ createBook = () => {
         });
 
         //the read button doesn't change colour at all
-        const readButton = document.createElement('button');
+        const readButton = document.createElement('p');
         readButton.classList.add('read-button');
+        readButton.textContent = Book.isRead ? "Read" : "Not Read";
+        const buttonRead = document.createElement('button');
+
         bookCard.appendChild(readButton);   
-
+        bookCard.appendChild(buttonRead);
         
+        buttonRead.addEventListener("click", toggleRead);
 
-        readButton.addEventListener('click', () => { 
-            Book.isRead = !Book.isRead;
+       // readButton.addEventListener('click', () => { 
+         //   Book.isRead = !Book.isRead;
 
-            if(Book.isRead === "false"){
-                readButton.textContent = 'Not Read';
-                readButton.style.backgroundColor = '#e04f63';
-            }else {
-                readButton.textContent === 'Read';
-                readButton.style.backgroundColor = '#63da63'
-            }
-        });
+           // if(Book.isRead === "false"){
+             //   readButton.textContent = 'Not Read';
+               // readButton.style.backgroundColor = '#e04f63';
+            //}else {
+              //  readButton.textContent === 'Read';
+                //readButton.style.backgroundColor = '#63da63'
+            //}
+       // });
 
     })
     
@@ -153,8 +161,6 @@ function validateSubmit(e) {
         return false;
     }
 }
-createBook();
-
 
 // When clicking the submit button, it needs to run all the functions
 buttonSubmit.addEventListener("click" , (e) => {
