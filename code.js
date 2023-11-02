@@ -15,7 +15,7 @@ const bookDialog = document.getElementById("bookDialog")
 const buttonSubmit = document.getElementById("buttonSubmit")
 const buttonClose = document.getElementById("buttonClose")
 const bookSection = document.querySelector(".main")
-const buttonRemove = document.getElementsByClassName("rmv-button");
+const removeButton = document.getElementById("remove-button");
 
 //TAKE INPUT
     const title = document.querySelector("#title");
@@ -74,8 +74,9 @@ function addBookToLibrary() {
 } 
   
 
+
+
 function removeBook(){
-    //how to remove book from display
     const element = document.getElementById("book-card");
     element.classList.remove("book-card1");
 }
@@ -92,7 +93,7 @@ createBook = () => {
         
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-card1');
-        bookCard.setAttribute("id", "book-card")
+        bookCard.setAttribute("id", myLibrary.indexOf(Book));
         bookSection.appendChild(bookCard);
 
         const titleInfo = document.createElement('h1');
@@ -112,10 +113,13 @@ createBook = () => {
 
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
+        removeButton.setAttribute("id", "remove-button");
         removeButton.classList.add('rmv-button');
         bookCard.appendChild(removeButton);
 
-        
+        removeButton.addEventListener('click', () => {
+            myLibrary.splice(myLibrary.indexOf(Book),1);
+        });
     })
     
 }
@@ -148,4 +152,6 @@ buttonSubmit.addEventListener("click" , (e) => {
     clearInput();
 })
 
-buttonRemove.addEventListener("click", removeBook());
+//buttonRemove.addEventListener("click", () =>{
+ //   removeBook();
+//});
