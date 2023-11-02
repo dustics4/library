@@ -111,6 +111,7 @@ createBook = () => {
         pagesInfo.classList.add('pages-info');
         bookCard.appendChild(pagesInfo);
 
+        //for some reason the book is only removed after clicking the remove button, then subitting a new book
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
         removeButton.setAttribute("id", "remove-button");
@@ -121,6 +122,7 @@ createBook = () => {
             myLibrary.splice(myLibrary.indexOf(Book),1);
         });
 
+        //the read button doesn't change colour at all
         const readButton = document.createElement('button');
         readButton.classList.add('read-button');
         bookCard.appendChild(readButton);   
