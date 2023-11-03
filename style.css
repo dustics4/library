@@ -28,16 +28,20 @@ header {
     background-color: #475569;
     height: 150px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin: 0;
     padding: 0px;
 }
 
+header h1 {
+    color: white;
+}
+
 #createBook {
-    padding: 25px 35px;
+    padding: 10px 20px;
     border-radius: 8px;
-    font-size: 32px;
+    font-size: 20px;
     border-style: none;
 }
 

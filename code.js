@@ -48,9 +48,9 @@ Book.prototype.toggleRead = function() {
     this.isRead = !this.isRead;
 }
 
-function toggleRead(index) {
-    console.log(myLibrary[index].toggleRead());
-}
+//function toggleRead(index) {
+  //  myLibrary[index].toggleRead();
+//}
 
 
 function addBookToLibrary() {
@@ -59,7 +59,7 @@ function addBookToLibrary() {
     newBook.title = title.value;
     newBook.author = author.value;
     newBook.pages = pages.value;
-    newBook.isRead = isRead.value;
+    newBook.isRead = isRead.checked;
     // We show the input to see if it is getting the correct information
     //console.log(newBook);
     // Once that is done, we push the input into an array to store its value
@@ -109,34 +109,37 @@ createBook = () => {
         removeButton.classList.add('rmv-button');
         bookCard.appendChild(removeButton);
 
+         //the read button doesn't change colour at all
+         const buttonRead = document.createElement('button');
+         buttonRead.textContent = Book.isRead ? "Read" : "Not Read";
+
+         bookCard.appendChild(buttonRead);
+
+         buttonRead.addEventListener('click', (event) => { 
+            Book.isRead = !Book.isRead;
+
+            if (event.target.textContent == 'Not Read'){
+                event.target.textContent = "Read"
+                event.target.setAttribute('id' , 'read')
+                } else  {
+                event.target.textContent = "Not Read"
+                event.target.setAttribute('id' , 'Not Read')
+            }
+
+        });
+         
+        // buttonRead.addEventListener("click", toggleRead());
+ 
+
         //remove button , using 
         removeButton.addEventListener('click', () => {
             myLibrary.splice(myLibrary.indexOf(Book),bookCard.id);
             bookCard.remove();  
         });
 
-        //the read button doesn't change colour at all
-        const readButton = document.createElement('p');
-        readButton.classList.add('read-button');
-        readButton.textContent = Book.isRead ? "Read" : "Not Read";
-        const buttonRead = document.createElement('button');
-
-        bookCard.appendChild(readButton);   
-        bookCard.appendChild(buttonRead);
+       
+     
         
-        buttonRead.addEventListener("click", toggleRead);
-
-       // readButton.addEventListener('click', () => { 
-         //   Book.isRead = !Book.isRead;
-
-           // if(Book.isRead === "false"){
-             //   readButton.textContent = 'Not Read';
-               // readButton.style.backgroundColor = '#e04f63';
-            //}else {
-              //  readButton.textContent === 'Read';
-                //readButton.style.backgroundColor = '#63da63'
-            //}
-       // });
 
     })
     
