@@ -27,6 +27,7 @@ showButton.addEventListener("click", () =>{
 buttonClose.addEventListener("click", (e) => {
     e.preventDefault();
     bookDialog.close();
+    clearInput();
 })
 
 
@@ -77,6 +78,7 @@ function clearInput(){
     title.value = '';
     author.value = '';
     pages.value = '';
+    isRead.value = '';
 }
 
 createBook = () => {
@@ -90,30 +92,33 @@ createBook = () => {
 
         const titleInfo = document.createElement('h1');
         titleInfo.classList.add('title-info');
-        titleInfo.textContent = Book.title;
+        titleInfo.textContent = 'Title : ' + Book.title;
         bookCard.appendChild(titleInfo);
 
         const authorInfo = document.createElement('h1');
         authorInfo.classList.add('author-info');
-        authorInfo.textContent = Book.author;
+        authorInfo.textContent = 'Author : ' + Book.author;
         bookCard.appendChild(authorInfo);
 
         const pagesInfo = document.createElement('h1');
-        pagesInfo.textContent = Book.pages ;
+        pagesInfo.textContent = 'Pages : ' + Book.pages ;
         pagesInfo.classList.add('pages-info');
         bookCard.appendChild(pagesInfo);
 
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'Remove';
-        removeButton.setAttribute("id", "remove-button");
-        removeButton.classList.add('rmv-button');
-        bookCard.appendChild(removeButton);
+       
 
          //the read button doesn't change colour at all
          const buttonRead = document.createElement('button');
+         buttonRead.classList.add('read-button');
          buttonRead.textContent = Book.isRead ? "Read" : "Not Read";
-
          bookCard.appendChild(buttonRead);
+
+         if (buttonRead.textContent === "Read"){
+            buttonRead.style.backgroundColor = "green"; 
+         }else{
+            buttonRead.style.backgroundColor = "red";
+         };
+
 
          buttonRead.addEventListener('click', (event) => { 
             Book.isRead = !Book.isRead;
@@ -121,15 +126,20 @@ createBook = () => {
             if (event.target.textContent == 'Not Read'){
                 event.target.textContent = "Read"
                 event.target.setAttribute('id' , 'read')
+                buttonRead.style.backgroundColor = "green"; 
                 } else  {
                 event.target.textContent = "Not Read"
                 event.target.setAttribute('id' , 'Not Read')
+                buttonRead.style.backgroundColor = "red";
             }
 
         });
-         
-        // buttonRead.addEventListener("click", toggleRead());
- 
+                 
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.setAttribute("id", "remove-button");
+        removeButton.classList.add('rmv-button');
+        bookCard.appendChild(removeButton);
 
         //remove button , using 
         removeButton.addEventListener('click', () => {
@@ -142,9 +152,8 @@ createBook = () => {
         
 
     })
-    
-}
 
+}
 
 const resetBook = () => {
     bookSection.innerHTML = '';

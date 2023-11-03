@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" 
+    href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
+    />
     <title>Library</title>
 </head>
 <body>
@@ -15,7 +17,7 @@
             <input type="text" name="author" id="author" required placeholder="Author">
             <input type="number" name="pages" id="pages" required placeholder="Pages">
             <label id="txt-read">Have you read it?</label>
-            <input class="checkbox" type="checkbox" id="isRead" />
+            <input class="checkbox" type="checkbox" id="isRead" required />
             <div id="two-buttons">
                 <button id="buttonSubmit" value="default">Submit</button>
                 <button id="buttonClose" formmethod="dialog">Close</button>
@@ -30,9 +32,9 @@
         
     </header>
     
-
-    <main class="main">
-
+    
+    <main class="container">
+        <div class="main"></div>
     </main>
 
     <script src="code.js"></script>
