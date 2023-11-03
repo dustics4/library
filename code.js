@@ -10,12 +10,13 @@ const buttonSubmit = document.getElementById("buttonSubmit")
 const buttonClose = document.getElementById("buttonClose")
 const bookSection = document.querySelector(".main")
 const removeButton = document.getElementById("remove-button");
-const isRead = document.getElementById("isRead");
 
 //TAKE INPUT
     const title = document.querySelector("#title");
     const author = document.querySelector("#author");
     const pages = document.querySelector("#pages");
+    const isRead = document.getElementById("isRead");
+
 
 // Show the dialog box to input details
 showButton.addEventListener("click", () =>{
@@ -44,12 +45,11 @@ function Book(title, author, pages, isRead) {
 }
 
 Book.prototype.toggleRead = function() {
-    this.read = !this.read;
+    this.isRead = !this.isRead;
 }
 
 function toggleRead(index) {
-    myLibrary[index].toggleRead();
-    createBook();
+    console.log(myLibrary[index].toggleRead());
 }
 
 
