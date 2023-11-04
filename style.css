@@ -27,6 +27,7 @@ body {
     padding-top: 70px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 100px;
 }
 
 form input {
@@ -65,6 +66,7 @@ header h1 {
     font-size: 20px;
     border-style: none;
     font-family: 'Raleway', sans-serif;
+    box-shadow: rgba(35, 37, 44, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 
 }
 
@@ -113,11 +115,26 @@ header h1 {
     
 }
 
+.read-button:hover {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.book-card1:hover {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.4s;
+    outline: 2px solid lightblue;
+}
+
 #remove-button {
     margin-bottom: 15px;
     padding: 10px 15px;
     border-radius: 0.7rem;
     border-style: none;
+
+}
+
+#remove-button:hover {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
 
 }
 
