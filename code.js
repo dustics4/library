@@ -1,15 +1,10 @@
-//add button on each book to change it's read status
-//Create an edit button for the content to update pages
-
-
-
 //SHOW THE DIALOG BOX
 const showButton = document.getElementById("createBook")
 const bookDialog = document.getElementById("bookDialog")
-const buttonSubmit = document.getElementById("buttonSubmit")
 const buttonClose = document.getElementById("buttonClose")
 const bookSection = document.querySelector(".main")
 const removeButton = document.getElementById("remove-button");
+let bookIsread = true;
 
 //TAKE INPUT
     const title = document.querySelector("#title");
@@ -17,6 +12,16 @@ const removeButton = document.getElementById("remove-button");
     const pages = document.querySelector("#pages");
     const isRead = document.getElementById("isRead");
 
+
+// When clicking the submit button, it needs to run all the functions
+const buttonSubmit = document.getElementById("buttonSubmit")
+buttonSubmit.addEventListener('click' , (e) => {
+    validateSubmit(e);
+    addBookToLibrary();
+    createBook();
+    clearInput();
+    bookDialog.close();
+});
 
 // Show the dialog box to input details
 showButton.addEventListener("click", () =>{
@@ -29,8 +34,6 @@ buttonClose.addEventListener("click", (e) => {
     bookDialog.close();
     clearInput();
 })
-
-
 
 //Array to hold the content of the book
 const myLibrary = [
@@ -45,14 +48,6 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
-Book.prototype.toggleRead = function() {
-    this.isRead = !this.isRead;
-}
-
-//function toggleRead(index) {
-  //  myLibrary[index].toggleRead();
-//}
-
 
 function addBookToLibrary() {
     //taking the input and storing it into the constructor as a value
@@ -61,16 +56,8 @@ function addBookToLibrary() {
     newBook.author = author.value;
     newBook.pages = pages.value;
     newBook.isRead = isRead.checked;
-    // We show the input to see if it is getting the correct information
-    //console.log(newBook);
     // Once that is done, we push the input into an array to store its value
     myLibrary.push(newBook);
-    // we loop through each of the values in the array , to get what we would like which is the input
-    //myLibrary.forEach((myLibrary) => {
-    //    myLibrary.title = newBook.title;
-   //     console.log(myLibrary.title);
-   // })
-    // When you get to read, create a function getReadValue().checked
 } 
   
 
@@ -78,7 +65,8 @@ function clearInput(){
     title.value = '';
     author.value = '';
     pages.value = '';
-    isRead.value = '';
+    isRead.checked = false;
+    bookIsread = true;
 }
 
 createBook = () => {
@@ -113,6 +101,7 @@ createBook = () => {
          buttonRead.textContent = Book.isRead ? "Read" : "Not Read";
          bookCard.appendChild(buttonRead);
 
+         //change background colour of the code
          if (buttonRead.textContent === "Read"){
             buttonRead.style.backgroundColor = "green"; 
          }else{
@@ -134,23 +123,19 @@ createBook = () => {
             }
 
         });
-                 
+
+        //Creating the remove button
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
         removeButton.setAttribute("id", "remove-button");
         removeButton.classList.add('rmv-button');
         bookCard.appendChild(removeButton);
 
-        //remove button , using 
+        //remove button , usiing splice. Number of elementw we want to remove
         removeButton.addEventListener('click', () => {
-            myLibrary.splice(myLibrary.indexOf(Book),bookCard.id);
+            myLibrary.splice(myLibrary.indexOf(Book), 1);
             bookCard.remove();  
         });
-
-       
-     
-        
-
     })
 
 }
@@ -159,26 +144,13 @@ const resetBook = () => {
     bookSection.innerHTML = '';
 }
 
-function getReadValue() {
-
-}
-
-function validateSubmit(e) {
+function validateSubmit(event) {
     if(title.value == "" && author.value == "" && pages.value == ""){
+        event.preventDefault();
         alert("Must be filled out");
-        e.preventDefault();
         bookDialog.close();
     }else{
         bookDialog.close();
         return false;
     }
 }
-
-// When clicking the submit button, it needs to run all the functions
-buttonSubmit.addEventListener("click" , (e) => {
-    e.preventDefault();
-    validateSubmit();
-    addBookToLibrary();
-    createBook();
-    clearInput();
-});
