@@ -5,6 +5,7 @@ const buttonClose = document.getElementById("buttonClose")
 const bookSection = document.querySelector(".main")
 const removeButton = document.getElementById("remove-button");
 let bookIsread = true;
+var isFieldValidated = false;
 
 //TAKE INPUT
     const title = document.querySelector("#title");
@@ -16,10 +17,11 @@ let bookIsread = true;
 const buttonSubmit = document.getElementById("buttonSubmit")
 buttonSubmit.addEventListener('click' , (e) => {
     validateSubmit(e);
-    addBookToLibrary();
+    if(isFieldValidated == true) {
+        addBookToLibrary();
+    }
     createBook();
     clearInput();
-    bookDialog.close();
 });
 
 // Show the dialog box to input details
@@ -150,9 +152,10 @@ function validateSubmit(event) {
     if(title.value == "" && author.value == "" && pages.value == ""){
         event.preventDefault();
         alert("Must be filled out");
-        bookDialog.close();
+        isFieldValidated = false;
     }else{
         bookDialog.close();
+        isFieldValidated = true;
         return false;
     }
 }
