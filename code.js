@@ -12,7 +12,6 @@ let bookIsread = true;
     const pages = document.querySelector("#pages");
     const isRead = document.getElementById("isRead");
 
-
 // When clicking the submit button, it needs to run all the functions
 const buttonSubmit = document.getElementById("buttonSubmit")
 buttonSubmit.addEventListener('click' , (e) => {
@@ -60,7 +59,7 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
 } 
   
-
+//clears all the values
 function clearInput(){
     title.value = '';
     author.value = '';
@@ -69,6 +68,7 @@ function clearInput(){
     bookIsread = true;
 }
 
+//function that creates the dom elements and loops over each value
 createBook = () => {
     resetBook();
     myLibrary.forEach(Book => {
@@ -95,7 +95,7 @@ createBook = () => {
 
        
 
-         //the read button doesn't change colour at all
+         //Button to check if something isRead. Changes colour and text when clicking
          const buttonRead = document.createElement('button');
          buttonRead.classList.add('read-button');
          buttonRead.textContent = Book.isRead ? "Read" : "Not Read";
@@ -108,7 +108,7 @@ createBook = () => {
             buttonRead.style.backgroundColor = "red";
          };
 
-
+         //When clicking changes colour and text
          buttonRead.addEventListener('click', (event) => { 
             Book.isRead = !Book.isRead;
 
@@ -131,7 +131,7 @@ createBook = () => {
         removeButton.classList.add('rmv-button');
         bookCard.appendChild(removeButton);
 
-        //remove button , usiing splice. Number of elementw we want to remove
+        //remove button , using splice. Number of element we want to remove
         removeButton.addEventListener('click', () => {
             myLibrary.splice(myLibrary.indexOf(Book), 1);
             bookCard.remove();  
@@ -140,10 +140,12 @@ createBook = () => {
 
 }
 
+//Resets the content of the book
 const resetBook = () => {
     bookSection.innerHTML = '';
 }
 
+//Supposed to validate the input
 function validateSubmit(event) {
     if(title.value == "" && author.value == "" && pages.value == ""){
         event.preventDefault();
@@ -154,3 +156,5 @@ function validateSubmit(event) {
         return false;
     }
 }
+
+

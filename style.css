@@ -17,10 +17,25 @@ body {
 }
 
 #bookDialog {
-    height : 400px;
+    height : 420px;
     width: 400px;
     font-family: 'Raleway', sans-serif;
 
+}
+
+#bookDialog h1 {
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    font-size: 26px;
+}
+
+#txt-read {
+    margin: 0;
+    margin-top: 10px;
+}
+
+.checkbox {
+    margin-bottom: 20px;
 }
 
 .main { 
