@@ -20,7 +20,7 @@ body {
     height : 420px;
     width: 400px;
     font-family: 'Raleway', sans-serif;
-
+    border-radius: 70px;
 }
 
 #bookDialog h1 {
@@ -29,9 +29,46 @@ body {
     font-size: 26px;
 }
 
+#buttonSubmit {
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-right: 10px;
+    font-size: 20px;
+    border-style: none;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: rgba(35, 37, 44, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+#buttonClose {
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-left: 10px;
+    font-size: 20px;
+    border-style: none;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: rgba(35, 37, 44, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+#buttonClose:hover {
+    background-color: #8f97a2;
+    color: white;
+}
+
+#buttonSubmit:hover {
+    background-color: #8f97a2;
+    color: white;
+}
+
+#bookDialog input {
+    border-radius: 15px;
+    border-style: solid;
+}
+
+
 #txt-read {
     margin: 0;
     margin-top: 10px;
+    font-size: 20px;
 }
 
 .checkbox {
