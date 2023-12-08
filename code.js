@@ -55,15 +55,6 @@ buttonClose.addEventListener("click", (e) => {
 const myLibrary = [
 ];
 
-//constructor for the Books
-function Book(title, author, pages, isRead) {
-  // the constructor...
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-}
-
 
 function addBookToLibrary() {
     //taking the input and storing it into the constructor as a value
