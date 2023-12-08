@@ -1,5 +1,4 @@
 //Data Structures
-
 class Book {
     constructor(title, author , pages, isRead){
         this.title = title;
@@ -10,8 +9,26 @@ class Book {
 }
 
 class Library {
+    //array for the library
+    constructor(){
+        this.books = [];
+    }
 
+    //function to add the books into the library
+    addBookToLibrary() {
+        //taking the input and storing it into the constructor as a value
+        let newBook = new Book();
+        newBook.title = title.value;
+        newBook.author = author.value;
+        newBook.pages = pages.value;
+        newBook.isRead = isRead.checked;
+        // Once that is done, we push the input into an array to store its value
+        this.books.push(newBook);
+    } 
 }
+
+//initializing the library publicly
+const library = new Library();
 
 //SHOW THE DIALOG BOX
 const showButton = document.getElementById("createBook")
@@ -33,7 +50,7 @@ const buttonSubmit = document.getElementById("buttonSubmit")
 buttonSubmit.addEventListener('click' , (e) => {
     validateSubmit(e);
     if(isFieldValidated == true) {
-        addBookToLibrary();
+        library.addBookToLibrary();
     }
     createBook();
     clearInput();
@@ -51,22 +68,6 @@ buttonClose.addEventListener("click", (e) => {
     clearInput();
 })
 
-//Array to hold the content of the book
-const myLibrary = [
-];
-
-
-function addBookToLibrary() {
-    //taking the input and storing it into the constructor as a value
-    let newBook = new Book();
-    newBook.title = title.value;
-    newBook.author = author.value;
-    newBook.pages = pages.value;
-    newBook.isRead = isRead.checked;
-    // Once that is done, we push the input into an array to store its value
-    myLibrary.push(newBook);
-} 
-  
 //clears all the values
 function clearInput(){
     title.value = '';
@@ -79,11 +80,11 @@ function clearInput(){
 //function that creates the dom elements and loops over each value
 createBook = () => {
     resetBook();
-    myLibrary.forEach(Book => {
+    library.books.forEach(Book => {
         
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-card1');
-        bookCard.setAttribute("id", myLibrary.indexOf(Book));
+        bookCard.setAttribute("id", library.books.indexOf(Book));
         bookSection.appendChild(bookCard);
 
         const titleInfo = document.createElement('h1');
@@ -141,11 +142,10 @@ createBook = () => {
 
         //remove button , using splice. Number of element we want to remove
         removeButton.addEventListener('click', () => {
-            myLibrary.splice(myLibrary.indexOf(Book), 1);
+            library.books.splice(library.books.indexOf(Book), 1);
             bookCard.remove();  
         });
     })
-
 }
 
 //Resets the content of the book
