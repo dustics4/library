@@ -1,5 +1,13 @@
 //Data Structures
 
+class Book {
+
+}
+
+class Library {
+    
+}
+
 //SHOW THE DIALOG BOX
 const showButton = document.getElementById("createBook")
 const bookDialog = document.getElementById("bookDialog")
